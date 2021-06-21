@@ -1,0 +1,56 @@
+// ******************First Method******************** 
+ALGORITHM sum_distinct_elments
+VAR
+//or   
+        // arr1[] = {3,1,7,9} 
+        // arr2[] = {2,4,1,9,3} 
+     arr1, arr2 : ARRAY_OF INTEGER [10];
+     i,j,elem1,elem2 : INTEGER;
+     s : INTEGER := 0;
+BEGIN
+    FOR i FROM 0 TO arr1.length -1 STEP 1  DO
+       FOR j FROM 0 TO arr2.length -1 STEP 1  DO
+    //*******************start Comparison***************
+        IF (arr1[i] <> arr2[j]) THEN
+            elem1:= arr1[i];
+            elem2:= arr2[j];
+        ELSE
+            elem1:= 0;
+            elem2:= 0;
+            BREAK; 
+        END_IF
+    //sum
+        s := s + elem1 + elem2 ; 
+    END_FOR
+    END_FOR
+    //*****************display*************************
+    Read("la somme des éléments distincts est :" , sum);
+END
+
+
+//**********************second method***********************
+ALGORITHM sum_distinct_elments
+VAR
+     arr1, arr2 : ARRAY_OF INTEGER [10];
+     i,j,elem1,elem2 : INTEGER;
+     s : INTEGER := 0;
+BEGIN
+Narr1:=arr1.length;
+Narr2:=arr2.length;
+i:=0; j:=0;
+  while (i < Narr1 && j < Narr2){
+    //*******************start Comparison***************
+        IF (arr1[i] <> arr2[j]) THEN
+            elem1:= arr1[i];
+            elem2:= arr2[j];
+        ELSE
+            elem1:= 0;
+            elem2:= 0;
+            BREAK; 
+        END_IF
+    //sum
+        s := s + elem1 + elem2 ; 
+   }
+    //*****************display*************************
+    Read("la somme des éléments distincts est :" , sum);
+END

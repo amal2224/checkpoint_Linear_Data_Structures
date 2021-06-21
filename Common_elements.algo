@@ -1,0 +1,61 @@
+// ******************First Method******************** 
+ALGORITHM somme_elts_communs
+VAR
+     arr1, arr2 : ARRAY_OF INTEGER [10];
+     i,j : INTEGER;
+     sum : INTEGER := 0;
+BEGIN
+    FOR i FROM 0 TO arr1.length -1 STEP 1  DO
+       FOR j FROM 0 TO arr2.length -1 STEP 1  DO
+        IF (arr1[i] = arr2[j]) THEN
+            sum := sum + arr1[i];
+        END_IF
+    END_FOR 
+    END_FOR
+
+    sum := 2*sum ; 
+    Read("la somme des éléments communs est :" , sum);
+END
+
+
+//**********************second method***********************
+
+ALGORITHM somme_elts_communs
+VAR
+    arr1, arr2 : ARRAY_OF INTEGER [10];
+    htab: HASH_TABLE<INTEGER,INTEGER>;
+    i,count : INTEGER;
+    sum : INTEGER := 0;
+BEGIN
+    FOR i FROM 0 TO arr1.length -1 STEP 1  DO
+        IF (htab.lookup(arr1[i]) = TRUE) THEN
+            count := htab.get (arr1[i]);
+            htab.insert (arr1[i],count+1);
+        ELSE
+            htab.insert (arr1[i],1);
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO arr2.length -1 STEP 1  DO
+        IF (htab.lookup(arr2[i]) = TRUE) THEN
+            count := htab.get (arr2[i]);
+            htab.insert (arr2[i],count+1);
+        ELSE
+            htab.insert (arr2[i],1);
+        END_IF
+    END_FOR
+
+FOR i FROM 0 TO arr1.length -1 STEP 1  DO
+    IF (htab.get (arr1[i])>1) THEN
+        sum := sum +arr1[i];
+    END_IF
+END_FOR
+
+FOR i FROM 0 TO arr2.length -1 STEP 1  DO
+    IF (htab.get (arr2[i])>1) THEN
+        sum := sum +arr2[i];
+    END_IF
+END_FOR
+
+ Read("la somme des éléments communs est :" , sum);
+END
